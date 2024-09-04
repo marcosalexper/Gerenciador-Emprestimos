@@ -29,9 +29,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         JBSair = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        JBCliente = new javax.swing.JButton();
+        JBFerramentas = new javax.swing.JButton();
+        JBEmprestimos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -78,22 +78,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        jButton1.setBackground(new java.awt.Color(51, 102, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("CADASTRAR CLIENTE");
-
-        jButton2.setBackground(new java.awt.Color(51, 102, 255));
-        jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setText("CADASTRAR FERRAMENTA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JBCliente.setBackground(new java.awt.Color(51, 102, 255));
+        JBCliente.setForeground(new java.awt.Color(255, 255, 0));
+        JBCliente.setText("CADASTRAR CLIENTE");
+        JBCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JBClienteActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 102, 255));
-        jButton3.setForeground(new java.awt.Color(255, 255, 0));
-        jButton3.setText("GERAR NOVO EMPRÉSTIMO");
+        JBFerramentas.setBackground(new java.awt.Color(51, 102, 255));
+        JBFerramentas.setForeground(new java.awt.Color(255, 255, 0));
+        JBFerramentas.setText("CADASTRAR FERRAMENTA");
+        JBFerramentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBFerramentasActionPerformed(evt);
+            }
+        });
+
+        JBEmprestimos.setBackground(new java.awt.Color(51, 102, 255));
+        JBEmprestimos.setForeground(new java.awt.Color(255, 255, 0));
+        JBEmprestimos.setText("GERAR NOVO EMPRÉSTIMO");
+        JBEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBEmprestimosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,9 +113,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JBEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
@@ -113,24 +123,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JBFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JBEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void JBFerramentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBFerramentasActionPerformed
+        TelaFerramentas objeto = new TelaFerramentas();
+        objeto.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_JBFerramentasActionPerformed
 
     private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
          System.exit(0);
     }//GEN-LAST:event_JBSairActionPerformed
+
+    private void JBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBClienteActionPerformed
+        TelaCliente objeto = new TelaCliente();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_JBClienteActionPerformed
+
+    private void JBEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEmprestimosActionPerformed
+        TelaEmprestimos objeto = new TelaEmprestimos();
+        objeto.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_JBEmprestimosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,10 +189,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBCliente;
+    private javax.swing.JButton JBEmprestimos;
+    private javax.swing.JButton JBFerramentas;
     private javax.swing.JButton JBSair;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
