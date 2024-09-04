@@ -52,6 +52,11 @@ public class TelaCliente extends javax.swing.JFrame {
         JBSair.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         JBSair.setForeground(new java.awt.Color(255, 255, 0));
         JBSair.setText("X");
+        JBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,6 +189,10 @@ public class TelaCliente extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
+         System.exit(0);
+    }//GEN-LAST:event_JBSairActionPerformed
 
     /**
      * @param args the command line arguments

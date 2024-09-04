@@ -28,7 +28,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
 
         JPMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        JBSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -50,10 +50,15 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("EMPRÉSTIMOS");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("X");
+        JBSair.setBackground(new java.awt.Color(0, 51, 102));
+        JBSair.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        JBSair.setForeground(new java.awt.Color(255, 255, 0));
+        JBSair.setText("X");
+        JBSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPMenuLayout = new javax.swing.GroupLayout(JPMenu);
         JPMenu.setLayout(JPMenuLayout);
@@ -63,7 +68,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         JPMenuLayout.setVerticalGroup(
@@ -71,7 +76,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
             .addGroup(JPMenuLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(JPMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(JBSair)
                     .addComponent(jLabel1))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -175,6 +180,10 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
+         System.exit(0);
+    }//GEN-LAST:event_JBSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,8 +220,8 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBSair;
     private javax.swing.JPanel JPMenu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
