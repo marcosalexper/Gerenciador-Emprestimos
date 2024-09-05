@@ -35,11 +35,11 @@ public class TelaFerramentas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        JBAlterar = new javax.swing.JButton();
+        JBCadastrar = new javax.swing.JButton();
+        JBApagar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTableFerramentas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -106,25 +106,25 @@ public class TelaFerramentas extends javax.swing.JFrame {
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
         jTextField3.setForeground(new java.awt.Color(30, 30, 30));
 
-        jButton3.setBackground(new java.awt.Color(51, 102, 255));
-        jButton3.setForeground(new java.awt.Color(255, 255, 0));
-        jButton3.setText("ALTERAR");
+        JBAlterar.setBackground(new java.awt.Color(51, 102, 255));
+        JBAlterar.setForeground(new java.awt.Color(255, 255, 0));
+        JBAlterar.setText("ALTERAR");
 
-        jButton4.setBackground(new java.awt.Color(51, 102, 255));
-        jButton4.setForeground(new java.awt.Color(255, 255, 0));
-        jButton4.setText("CADASTRAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        JBCadastrar.setBackground(new java.awt.Color(51, 102, 255));
+        JBCadastrar.setForeground(new java.awt.Color(255, 255, 0));
+        JBCadastrar.setText("CADASTRAR");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                JBCadastrarActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 102, 255));
-        jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setText("APAGAR");
+        JBApagar.setBackground(new java.awt.Color(51, 102, 255));
+        JBApagar.setForeground(new java.awt.Color(255, 255, 0));
+        JBApagar.setText("APAGAR");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTableFerramentas.setBackground(new java.awt.Color(255, 255, 255));
+        JTableFerramentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -135,7 +135,7 @@ public class TelaFerramentas extends javax.swing.JFrame {
                 "ID", "NOME", "MARCA", "CUSTO"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTableFerramentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,11 +163,11 @@ public class TelaFerramentas extends javax.swing.JFrame {
                                 .addGap(101, 101, 101))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jButton2)
+                        .addComponent(JBApagar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(JBAlterar)
                         .addGap(113, 113, 113)))
-                .addComponent(jButton4)
+                .addComponent(JBCadastrar)
                 .addGap(34, 34, 34))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
@@ -190,9 +190,9 @@ public class TelaFerramentas extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(JBApagar)
+                    .addComponent(JBAlterar)
+                    .addComponent(JBCadastrar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -200,9 +200,9 @@ public class TelaFerramentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
          System.exit(0);
@@ -244,17 +244,17 @@ public class TelaFerramentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBAlterar;
+    private javax.swing.JButton JBApagar;
+    private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBSair;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTable JTableFerramentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
