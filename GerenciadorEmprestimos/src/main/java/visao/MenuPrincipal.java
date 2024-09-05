@@ -9,6 +9,8 @@ package visao;
  * @author Win11
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+    
+     private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
 
     /**
      * Creates new form MenuPrincipal
@@ -39,6 +41,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setUndecorated(true);
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -152,6 +164,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         TelaEmprestimos objeto = new TelaEmprestimos();
         objeto.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_JBEmprestimosActionPerformed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+           int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+
+        setLocation(x - xMouse, y - yMouse);  
+
+    }//GEN-LAST:event_formMouseDragged
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+          xMouse = evt.getX();
+          yMouse = evt.getY();    // TODO add your handling code here:
+    }//GEN-LAST:event_formMousePressed
 
     /**
      * @param args the command line arguments
