@@ -4,6 +4,11 @@
  */
 package visao;
 
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+
 /**
  *
  * @author Win11
@@ -11,13 +16,18 @@ package visao;
 public class TelaCliente extends javax.swing.JFrame {
     
     private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
+    private Cliente objetocliente;
 
     /**
      * Creates new form TelaCliente
      */
     public TelaCliente() {
         initComponents();
+        this.objetocliente = new Cliente();
+        carregaTabela();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
