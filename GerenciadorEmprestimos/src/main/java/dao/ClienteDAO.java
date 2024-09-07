@@ -1,4 +1,3 @@
-
 package dao;
 
 import modelo.Cliente;
@@ -9,16 +8,14 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 
-
 public class ClienteDAO {
-    
+
     public static ArrayList<Cliente> minhalista = new ArrayList<>();
-    
-    
+
     public ArrayList getMinhaLista() {
-        
-        minhaLista.clear();
-        
+
+        minhalista.clear();
+
         try {
             Statement stmt = this.getConexao().createStatement();
             ResultSet res = stmt.executeQuery("SELECT * FROM tb_clientes");
@@ -30,7 +27,7 @@ public class ClienteDAO {
 
                 Cliente objeto = new Cliente(id, nome, telefone);
 
-                minhaLista.add(objeto);
+                minhalista.add(objeto);
             }
 
             stmt.close();
@@ -38,7 +35,7 @@ public class ClienteDAO {
         } catch (SQLException ex) {
         }
 
-        return minhaLista;
+        return minhalista;
     }
 
     public boolean insertClienteBD(Cliente objeto) {
@@ -61,7 +58,6 @@ public class ClienteDAO {
         }
     }
 
-   
     public boolean deleteClienteBD(int id) {
         try {
             Statement stmt = this.getConexao().createStatement();
@@ -74,7 +70,6 @@ public class ClienteDAO {
         return true;
     }
 
-  
     public boolean updateClienteBD(Cliente objeto) {
 
         String sql = "UPDATE tb_clientes set nome = ? ,telefone = ? WHERE id = ?";
@@ -96,7 +91,8 @@ public class ClienteDAO {
         }
 
     }
+        private Connection getConexao() {
+        return Conexao.getConexao();
         }
-    
-    
-}
+}    
+
