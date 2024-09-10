@@ -150,7 +150,7 @@ public class TelaCliente extends javax.swing.JFrame {
         });
 
         jTableCliente.setBackground(new java.awt.Color(255, 255, 255));
-        jTableCliente.setForeground(new java.awt.Color(255, 255, 0));
+        jTableCliente.setForeground(new java.awt.Color(0, 0, 0));
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
