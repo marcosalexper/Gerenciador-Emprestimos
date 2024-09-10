@@ -13,7 +13,7 @@
 > RF004 – O sistema deve permitir o cadastro de emprestimos, selecionando o cliente e a ferramenta.</br>
 > RF005 – O sistema deve mostrar o valor total gasto com ferramentas.</br>
 > RF006 – O sistema deve mostrar empréstimos ativos e empréstimos já realizados.</br>
-> RF007 – O sistema deve contabilizar a quantidade de empréstimos realizado por cada um dos clientes cadastrados.</br>
+> RF007 – O sistema deve contabilizar a quantidade de empréstimos realizados por cada um dos clientes cadastrados.</br>
 
 ### Requisitos Não-Funcionais:
 > RNF001 - Linguagem de Desenvolvimento: O sistema deve ser desenvolvido na linguagem de programação Java.</br>
