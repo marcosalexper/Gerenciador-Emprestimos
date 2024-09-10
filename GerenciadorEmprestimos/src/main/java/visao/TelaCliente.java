@@ -6,14 +6,17 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import dao.ClienteDAO;
 
+
+
 public class TelaCliente extends javax.swing.JFrame {
 
     private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
-    private Cliente objetocliente;
+    private final ClienteDAO objetocliente;
+   
 
     public TelaCliente() {
         initComponents();
-        this.objetocliente = new Cliente();
+        this.objetocliente = new ClienteDAO();
         carregaTabela();
     }
 
@@ -32,7 +35,7 @@ public class TelaCliente extends javax.swing.JFrame {
         }
     }
 
-    public ArrayList<String> getListaAmigos() {
+    public ArrayList<String> getListaClientes() {
         return this.objetocliente.getMinhaLista();
     }
 
@@ -40,7 +43,7 @@ public class TelaCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        JPmenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         JBSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -53,8 +56,8 @@ public class TelaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         setResizable(false);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -68,7 +71,7 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+        JPmenu.setBackground(new java.awt.Color(0, 51, 102));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -84,22 +87,22 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPmenuLayout = new javax.swing.GroupLayout(JPmenu);
+        JPmenu.setLayout(JPmenuLayout);
+        JPmenuLayout.setHorizontalGroup(
+            JPmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPmenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JBSair, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        JPmenuLayout.setVerticalGroup(
+            JPmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPmenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JPmenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(JBSair))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -111,11 +114,6 @@ public class TelaCliente extends javax.swing.JFrame {
 
         JTFnome.setBackground(new java.awt.Color(255, 255, 255));
         JTFnome.setForeground(new java.awt.Color(30, 30, 30));
-        JTFnome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFnomeActionPerformed(evt);
-            }
-        });
 
         jLabel3.setBackground(new java.awt.Color(51, 102, 255));
         jLabel3.setForeground(new java.awt.Color(0, 51, 102));
@@ -175,7 +173,7 @@ public class TelaCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(JBApagar)
@@ -198,12 +196,12 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(JTFnome)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JPmenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -222,16 +220,15 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jScrollPane1.getAccessibleContext().setAccessibleParent(jScrollPane1);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_JBSairActionPerformed
-
-    private void JTFnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFnomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFnomeActionPerformed
     //metodo para mudar a posicao da janela    
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         int x = evt.getXOnScreen();
@@ -311,12 +308,22 @@ public class TelaCliente extends javax.swing.JFrame {
         } finally {
             carregaTabela();
         }
-    }
+    
     }//GEN-LAST:event_JBCadastrarActionPerformed
+
+    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
+        if (this.jTableCliente.getSelectedRow() != -1) {
+            String nome = this.jTableCliente.getValueAt(this.jTableCliente.getSelectedRow(), 1).toString();
+            String telefone = this.jTableCliente.getValueAt(this.jTableCliente.getSelectedRow(), 2).toString();
+
+            this.JTFnome.setText(nome);
+            this.JTFtelefone.setText(telefone);
+        }
+    }//GEN-LAST:event_jTableClienteMouseClicked
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
          try {
-
+          
             int id = 0;
             String nome = "";
             String telefone = "";
@@ -350,76 +357,57 @@ public class TelaCliente extends javax.swing.JFrame {
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um numero.");
+            JOptionPane.showMessageDialog(null, "Informe um n mero.");
         } finally {
             carregaTabela();
         }
+
     }//GEN-LAST:event_JBAlterarActionPerformed
 
-    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
-          if (this.jTableCliente.getSelectedRow() != -1) {
-            String nome = this.jTableCliente.getValueAt(this.jTableCliente.getSelectedRow(), 1).toString();
-            String telefone = this.jTableCliente.getValueAt(this.jTableCliente.getSelectedRow(), 2).toString();
-
-            this.JTFnome.setText(nome);
-            this.JTFtelefone.setText(telefone);
-        }
-    }//GEN-LAST:event_jTableClienteMouseClicked
-
-   
     public static void main(String args[]) {
-      
+        
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+        //</editor-fold>
 
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaCliente().setVisible(true);
             }
         });
     }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBAlterar;
     private javax.swing.JButton JBApagar;
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBSair;
+    private javax.swing.JPanel JPmenu;
     private javax.swing.JTextField JTFnome;
     private javax.swing.JTextField JTFtelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCliente;
     // End of variables declaration//GEN-END:variables
 
+}
