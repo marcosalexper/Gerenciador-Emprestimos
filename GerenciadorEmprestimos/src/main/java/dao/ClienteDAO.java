@@ -91,6 +91,26 @@ public class ClienteDAO {
         }
 
     }
+    
+    public Cliente carregaCliente(int id) {
+
+        Cliente objeto = new Cliente();
+        objeto.setId(id);
+
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_clientes WHERE id = " + id);
+            res.next();
+
+            objeto.setNome(res.getString("nome"));
+            objeto.setTelefone(res.getString("telefone"));
+
+            stmt.close();
+
+        } catch (SQLException erro) {
+        }
+        return objeto;
+    }
         private Connection getConexao() {
         return Conexao.getConexao();
         }
