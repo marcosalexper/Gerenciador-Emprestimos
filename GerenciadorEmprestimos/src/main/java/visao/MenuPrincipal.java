@@ -4,7 +4,7 @@ package visao;
 
 public class MenuPrincipal extends javax.swing.JFrame {
     
-     private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
+     private int xMouse, yMouse; 
 
    
     public MenuPrincipal() {
