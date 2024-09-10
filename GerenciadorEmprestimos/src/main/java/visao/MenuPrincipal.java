@@ -80,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBCliente.setBackground(new java.awt.Color(51, 102, 255));
         JBCliente.setForeground(new java.awt.Color(255, 255, 0));
-        JBCliente.setText("CADASTRAR CLIENTE");
+        JBCliente.setText(" CLIENTE");
         JBCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBClienteActionPerformed(evt);
@@ -89,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBFerramentas.setBackground(new java.awt.Color(51, 102, 255));
         JBFerramentas.setForeground(new java.awt.Color(255, 255, 0));
-        JBFerramentas.setText("CADASTRAR FERRAMENTA");
+        JBFerramentas.setText(" FERRAMENTA");
         JBFerramentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBFerramentasActionPerformed(evt);
@@ -98,7 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBEmprestimos.setBackground(new java.awt.Color(51, 102, 255));
         JBEmprestimos.setForeground(new java.awt.Color(255, 255, 0));
-        JBEmprestimos.setText("GERAR NOVO EMPRÉSTIMO");
+        JBEmprestimos.setText(" EMPRÉSTIMO");
         JBEmprestimos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBEmprestimosActionPerformed(evt);
