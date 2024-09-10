@@ -126,6 +126,7 @@ public class TelaFerramentas extends javax.swing.JFrame {
         JBApagar.setText("APAGAR");
 
         JTableFerramentas.setBackground(new java.awt.Color(255, 255, 255));
+        JTableFerramentas.setForeground(new java.awt.Color(0, 0, 0));
         JTableFerramentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
