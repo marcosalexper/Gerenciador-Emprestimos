@@ -21,7 +21,7 @@
 > RNF003 – Localização: O sistema deve rodar localmente no aparelho do usuário.</br>
 
 ### Regras de Negócio
-> RN001 – Empréstimos devem ser feitos apenas para clientes cadastrados</br>
+> RN001 – Empréstimos devem ser feitos apenas para clientes cadastrados.</br>
 > RN002 - Os dados de clientes e ferramentas não podem ser deixados em branco.</br>
 > RN003 - A quantidade em estoque de uma ferramenta deve ser um valor positivo.
 
