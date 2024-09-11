@@ -143,13 +143,14 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jTableEmprestimos.setForeground(new java.awt.Color(0, 0, 0));
         jTableEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID AMIGO", "ID FERRAMENTA", "DATA EMPRÉSTIMO", "DATA DEVOLUÇÃO"
+                "ID ", "CLIENTE", "FERRAMENTA", "DATA EMPRÉSTIMO", "DATA DEVOLUÇÃO"
             }
         ));
         jScrollPane1.setViewportView(jTableEmprestimos);
