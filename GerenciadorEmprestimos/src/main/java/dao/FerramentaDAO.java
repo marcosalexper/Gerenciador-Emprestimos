@@ -19,7 +19,7 @@ public class FerramentaDAO {
 
         try {
             Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_feramentas");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_ferramentas");
             while (res.next()) {
 
                 int id = res.getInt("id");
