@@ -140,8 +140,10 @@ public class TelaFerramentas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTableFerramentas);
 
-        jLabel5.setText("Custo Total");
+        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel5.setText("CUSTO TOTAL");
 
+        JTFtotal.setForeground(new java.awt.Color(0, 51, 102));
         JTFtotal.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +166,7 @@ public class TelaFerramentas extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jTextField3)
                                 .addGap(101, 101, 101))))
