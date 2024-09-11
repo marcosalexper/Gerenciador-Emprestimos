@@ -181,14 +181,29 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         JBApagar.setBackground(new java.awt.Color(51, 102, 255));
         JBApagar.setForeground(new java.awt.Color(255, 255, 0));
         JBApagar.setText("APAGAR");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
 
         JBAlterar.setBackground(new java.awt.Color(51, 102, 255));
         JBAlterar.setForeground(new java.awt.Color(255, 255, 0));
         JBAlterar.setText("ALTERAR");
+        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAlterarActionPerformed(evt);
+            }
+        });
 
         JBGerar.setBackground(new java.awt.Color(51, 102, 255));
         JBGerar.setForeground(new java.awt.Color(255, 255, 0));
         JBGerar.setText("GERAR");
+        JBGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBGerarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(0, 51, 102));
         jLabel6.setText("CLIENTE COM MAIS EMPRÉSTIMOS:");
@@ -288,6 +303,105 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();   // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
+
+    private void JBGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGerarActionPerformed
+         try {
+            int idCliente = Integer.parseInt(this.JTFcliente.getText());
+            int idFerramenta = Integer.parseInt(this.JTFferramenta.getText());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataEmprestimo = new Date(sdf.parse(this.JTFdata.getText()).getTime());
+            Date dataDevolucao = null;
+
+            
+            if (!this.JTFdevolucao.getText().isEmpty()) {
+                dataDevolucao = new Date(sdf.parse(this.JTFdevolucao.getText()).getTime());
+
+                
+                if (dataEmprestimo.after(dataDevolucao)) {
+                    throw new ParseException("Data de empréstimo posterior à data de devolução", 0);
+                }
+            }
+
+            
+            Emprestimo emprestimo = new Emprestimo(objetocliente.carregaCliente(idCliente),
+                    objetoferramenta.carregaFerramenta(idFerramenta),
+                    dataEmprestimo,
+                    dataDevolucao);
+
+            
+            if (objetoemprestimo.registrarEmprestimo(emprestimo)) {
+                JOptionPane.showMessageDialog(rootPane, "Emprestimo cadastrado com sucesso!");
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            carregaTabela();
+        }
+
+    }//GEN-LAST:event_JBGerarActionPerformed
+
+    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
+        try {
+            
+            int id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
+            int idCliente = Integer.parseInt(this.JTFcliente.getText());
+            int idFerramenta = Integer.parseInt(this.JTFferramenta.getText());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataEmprestimo = new Date(sdf.parse(this.JTFdata.getText()).getTime());
+            Date dataDevolucao = null;
+
+            if (!this.JTFdevolucao.getText().isEmpty() && !this.JTFdevolucao.getText().contains("_")) {
+                dataDevolucao = new Date(sdf.parse(this.JTFdevolucao.getText()).getTime());
+
+                if (dataEmprestimo.after(dataDevolucao)) {
+                    throw new ParseException("Data de empréstimo posterior à data de devolução", 0);
+                }
+            }
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.setId(id);
+            emprestimo.setIdCliente(objetocliente.carregaCliente(idCliente));
+            emprestimo.setIdFerramenta(objetoferramenta.carregaFerramenta(idFerramenta));
+            emprestimo.setDataEmprestimo(dataEmprestimo);
+            emprestimo.setDataDevolucao(dataDevolucao);
+
+            
+            if (objetoemprestimo.updateEmprestimoBD(emprestimo)) {
+                JOptionPane.showMessageDialog(rootPane, "Emprestimo atualizado com sucesso!");
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+            carregaTabela(); 
+        }
+    }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+       try {
+            int id = 0;
+            int idCliente = 0;
+
+            if (this.jTableEmprestimos.getSelectedRow() == -1) {
+                throw new Mensagens("Primeiro, selecione um empréstimo para remover");
+            } else {
+                id = Integer.parseInt(this.jTableEmprestimos.getValueAt(this.jTableEmprestimos.getSelectedRow(), 0).toString());
+                idCliente = objetoemprestimo.carregaEmprestimo(id).getIdCliente().getId();
+            }
+
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja remover este empréstimo?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+            if (resposta == JOptionPane.YES_OPTION && this.objetoemprestimo.deleteEmprestimoBD(id)) {
+                JOptionPane.showMessageDialog(rootPane, "Empréstimo removido com sucesso!");
+            }
+        } catch (Mensagens erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            carregaTabela();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_JBApagarActionPerformed
 
   
     public static void main(String args[]) {
