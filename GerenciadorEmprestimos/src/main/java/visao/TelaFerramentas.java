@@ -1,14 +1,47 @@
 
 package visao;
 
+import dao.FerramentaDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Ferramenta;
+
 
 public class TelaFerramentas extends javax.swing.JFrame {
     
      private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
+     
+     private final FerramentaDAO objetoferramenta;
 
     
     public TelaFerramentas() {
         initComponents();
+        this.objetoferramenta = new FerramentaDAO();
+        carregaTabela();
+    }
+    
+    public final void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableFerramentas.getModel();
+        modelo.setNumRows(0);
+
+        ArrayList<Ferramenta> minhalista;
+        minhalista = objetoferramenta.getMinhaLista();
+
+        for (Ferramenta ferramenta : minhalista) {
+            modelo.addRow(new Object[]{
+                ferramenta.getId(),
+                ferramenta.getNome(),
+                ferramenta.getMarca(),
+                ferramenta.getCusto(),});
+        }
+        custoTotal();
+    }
+
+    private void custoTotal() {
+        double custoTotal = objetoferramenta.getTotal();
+        String custoTotalFormatado = String.format("%.2f", custoTotal);
+        this.JTFtotal.setText(custoTotalFormatado);
     }
 
     
@@ -20,16 +53,16 @@ public class TelaFerramentas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JBSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        JTFnome = new javax.swing.JTextField();
+        JTFmarca = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        JTFcusto = new javax.swing.JTextField();
         JBAlterar = new javax.swing.JButton();
         JBCadastrar = new javax.swing.JButton();
         JBApagar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTableFerramentas = new javax.swing.JTable();
+        jTableFerramentas = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         JTFtotal = new javax.swing.JLabel();
 
@@ -91,11 +124,11 @@ public class TelaFerramentas extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("NOME:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(30, 30, 30));
+        JTFnome.setBackground(new java.awt.Color(255, 255, 255));
+        JTFnome.setForeground(new java.awt.Color(30, 30, 30));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(30, 30, 30));
+        JTFmarca.setBackground(new java.awt.Color(255, 255, 255));
+        JTFmarca.setForeground(new java.awt.Color(30, 30, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 102));
@@ -105,12 +138,17 @@ public class TelaFerramentas extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 51, 102));
         jLabel4.setText("CUSTO:");
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(30, 30, 30));
+        JTFcusto.setBackground(new java.awt.Color(255, 255, 255));
+        JTFcusto.setForeground(new java.awt.Color(30, 30, 30));
 
         JBAlterar.setBackground(new java.awt.Color(51, 102, 255));
         JBAlterar.setForeground(new java.awt.Color(255, 255, 0));
         JBAlterar.setText("ALTERAR");
+        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAlterarActionPerformed(evt);
+            }
+        });
 
         JBCadastrar.setBackground(new java.awt.Color(51, 102, 255));
         JBCadastrar.setForeground(new java.awt.Color(255, 255, 0));
@@ -124,10 +162,15 @@ public class TelaFerramentas extends javax.swing.JFrame {
         JBApagar.setBackground(new java.awt.Color(51, 102, 255));
         JBApagar.setForeground(new java.awt.Color(255, 255, 0));
         JBApagar.setText("APAGAR");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
 
-        JTableFerramentas.setBackground(new java.awt.Color(255, 255, 255));
-        JTableFerramentas.setForeground(new java.awt.Color(0, 0, 0));
-        JTableFerramentas.setModel(new javax.swing.table.DefaultTableModel(
+        jTableFerramentas.setBackground(new java.awt.Color(255, 255, 255));
+        jTableFerramentas.setForeground(new java.awt.Color(0, 0, 0));
+        jTableFerramentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,7 +181,12 @@ public class TelaFerramentas extends javax.swing.JFrame {
                 "ID", "NOME", "MARCA", "CUSTO"
             }
         ));
-        jScrollPane1.setViewportView(JTableFerramentas);
+        jTableFerramentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableFerramentasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableFerramentas);
 
         jLabel5.setForeground(new java.awt.Color(0, 51, 102));
         jLabel5.setText("CUSTO TOTAL");
@@ -162,14 +210,13 @@ public class TelaFerramentas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField3)
-                                .addGap(101, 101, 101))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(JTFcusto, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JTFmarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(JBApagar)
@@ -196,17 +243,17 @@ public class TelaFerramentas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(JTFtotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFcusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBApagar)
@@ -220,11 +267,46 @@ public class TelaFerramentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
-        // TODO add your handling code here:
+       try {
+            
+            String nome = "";
+            String marca = "";
+            double custo = 0;
+            if (this.JTFnome.getText().length() < 2) {
+                throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFnome.getText();
+            }
+            if (this.JTFmarca.getText().length() <= 0) {
+                throw new Mensagens("Marca deve conter ao menos 2 caracteres.");
+            } else {
+                marca = this.JTFmarca.getText();
+            }
+            if (this.JTFcusto.getText().length() < 0) {
+                throw new Mensagens("Custo deve ser número e maior que zero.");
+            } else {
+                custo = Double.parseDouble(this.JTFcusto.getText());
+            }
+         
+            if (this.objetoferramenta.insertFerramentaBD(new Ferramenta(nome, marca, custo))) {
+                JOptionPane.showMessageDialog(rootPane, "Ferramenta Cadastrado com Sucesso!");
+                this.JTFnome.setText("");
+                this.JTFmarca.setText("");
+                this.JTFcusto.setText("");
+            }
+           
+            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+        } catch (Mensagens erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um n mero.");
+        } finally {
+            carregaTabela(); 
+        }
     }//GEN-LAST:event_JBCadastrarActionPerformed
 
     private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
-         System.exit(0);
+         this.dispose();
     }//GEN-LAST:event_JBSairActionPerformed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -238,6 +320,105 @@ public class TelaFerramentas extends javax.swing.JFrame {
           xMouse = evt.getX();
           yMouse = evt.getY();// TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
+
+    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
+                try {
+            
+            int id = 0;
+            String nome = "";
+            String marca = "";
+            double custo = 0;
+
+            if (this.JTFnome.getText().length() < 2) {
+                throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFnome.getText();
+            }
+
+            if (this.JTFmarca.getText().length() <= 0) {
+                throw new Mensagens("Marca deve conter ao menos 2 caracteres.");
+            } else {
+                marca = this.JTFmarca.getText();
+            }
+
+            if (this.JTFcusto.getText().length() < 2) {
+                throw new Mensagens("Custo deve conter ao menos 1 numero.");
+            } else {
+                custo = Double.parseDouble(this.JTFcusto.getText());
+            }
+
+            if (this.jTableFerramentas.getSelectedRow() == -1) {
+                throw new Mensagens("Primeiro Selecione uma Ferramenta para Alterar");
+            } else {
+                id = Integer.parseInt(this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 0).toString());
+            }
+
+            if (this.objetoferramenta.updateFerramentaBD(new Ferramenta(id, nome, marca, custo))) {
+
+                
+                this.JTFnome.setText("");
+                this.JTFmarca.setText("");
+                this.JTFcusto.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Ferramenta alterada com Sucesso!");
+
+            }
+            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+        } catch (Mensagens erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um numero.");
+        } finally {
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBAlterarActionPerformed
+  
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+         try {
+            
+            int id = 0;
+            if (this.jTableFerramentas.getSelectedRow() == -1) {
+                throw new Mensagens(
+                        "Primeiro Selecione uma Ferramenta para APAGAR");
+            } else {
+                id = Integer.parseInt(this.jTableFerramentas.
+                        getValueAt(this.jTableFerramentas.getSelectedRow(), 0).
+                        toString());
+            }
+            // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.
+                    showConfirmDialog(null,
+                            "Tem certeza que deseja apagar esta Ferramenta ?");
+            if (respostaUsuario == 0) {// clicou em SIM
+                
+                if (this.objetoferramenta.deleteFerramentaBD(id)) {
+                    
+                    this.JTFnome.setText("");
+                    this.JTFmarca.setText("");
+                    this.JTFcusto.setText("");
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Ferramenta apagada com sucesso!");
+                }
+            }
+            // atualiza a tabela.
+            System.out.println(this.objetoferramenta.getMinhaLista().toString());
+        } catch (Mensagens erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {   
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
+
+    private void jTableFerramentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFerramentasMouseClicked
+        if (this.jTableFerramentas.getSelectedRow() != -1) {
+            String nome = this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 1).toString();
+            String marca = this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 2).toString();
+            String custo = this.jTableFerramentas.getValueAt(this.jTableFerramentas.getSelectedRow(), 3).toString();
+
+            this.JTFnome.setText(nome);
+            this.JTFmarca.setText(marca);
+            this.JTFcusto.setText(custo);
+        }//
+    }//GEN-LAST:event_jTableFerramentasMouseClicked
 
    
     public static void main(String args[]) {
@@ -277,8 +458,10 @@ public class TelaFerramentas extends javax.swing.JFrame {
     private javax.swing.JButton JBApagar;
     private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBSair;
+    private javax.swing.JTextField JTFcusto;
+    private javax.swing.JTextField JTFmarca;
+    private javax.swing.JTextField JTFnome;
     private javax.swing.JLabel JTFtotal;
-    private javax.swing.JTable JTableFerramentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,8 +469,6 @@ public class TelaFerramentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable jTableFerramentas;
     // End of variables declaration//GEN-END:variables
 }
