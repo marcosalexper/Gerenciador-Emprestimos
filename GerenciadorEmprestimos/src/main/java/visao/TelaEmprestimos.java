@@ -74,13 +74,13 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEmprestimos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JTFcliente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        JTFferramenta = new javax.swing.JTextField();
+        JTFdata = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        JTFdevolucao = new javax.swing.JTextField();
         JBApagar = new javax.swing.JButton();
         JBAlterar = new javax.swing.JButton();
         JBGerar = new javax.swing.JButton();
@@ -157,17 +157,17 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("ID CLIENTE:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(30, 30, 30));
+        JTFcliente.setBackground(new java.awt.Color(255, 255, 255));
+        JTFcliente.setForeground(new java.awt.Color(30, 30, 30));
 
         jLabel3.setForeground(new java.awt.Color(0, 51, 102));
         jLabel3.setText("ID FERRAMENTA:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(30, 30, 30));
+        JTFferramenta.setBackground(new java.awt.Color(255, 255, 255));
+        JTFferramenta.setForeground(new java.awt.Color(30, 30, 30));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(30, 30, 30));
+        JTFdata.setBackground(new java.awt.Color(255, 255, 255));
+        JTFdata.setForeground(new java.awt.Color(30, 30, 30));
 
         jLabel4.setForeground(new java.awt.Color(0, 51, 102));
         jLabel4.setText("DATA EMPRÉSTIMO:");
@@ -175,8 +175,8 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 102));
         jLabel5.setText("DATA DEVOLUÇÃO:");
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(30, 30, 30));
+        JTFdevolucao.setBackground(new java.awt.Color(255, 255, 255));
+        JTFdevolucao.setForeground(new java.awt.Color(30, 30, 30));
 
         JBApagar.setBackground(new java.awt.Color(51, 102, 255));
         JBApagar.setForeground(new java.awt.Color(255, 255, 0));
@@ -210,13 +210,13 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(JTFferramenta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(JTFqtdemprestimos)
@@ -224,7 +224,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(JBGerar)
-                                            .addComponent(jTextField4)))))
+                                            .addComponent(JTFdevolucao)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(JBApagar)
@@ -232,7 +232,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(JTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(95, 95, 95)
                                         .addComponent(JBAlterar))))))
@@ -247,16 +247,16 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                 .addComponent(JPMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFferramenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFdevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -328,6 +328,10 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     private javax.swing.JButton JBGerar;
     private javax.swing.JButton JBSair;
     private javax.swing.JPanel JPMenu;
+    private javax.swing.JTextField JTFcliente;
+    private javax.swing.JTextField JTFdata;
+    private javax.swing.JTextField JTFdevolucao;
+    private javax.swing.JTextField JTFferramenta;
     private javax.swing.JLabel JTFqtdemprestimos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -337,9 +341,5 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableEmprestimos;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
