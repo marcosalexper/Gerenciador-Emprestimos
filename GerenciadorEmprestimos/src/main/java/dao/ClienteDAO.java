@@ -91,7 +91,7 @@ public class ClienteDAO {
         }
 
     }
-    
+
     public Cliente carregaCliente(int id) {
 
         Cliente objeto = new Cliente();
@@ -111,8 +111,42 @@ public class ClienteDAO {
         }
         return objeto;
     }
-        private Connection getConexao() {
-        return Conexao.getConexao();
-        }
-}    
 
+    public Cliente getClienteComMaisEmprestimos() {
+        Cliente clienteComMaisEmprestimos = null;
+        int maxEmprestimos = 0;
+
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT id_cliente, COUNT(*) as total_emprestimos FROM tb_emprestimos GROUP BY id_cliente ORDER BY total_emprestimos DESC LIMIT 1");
+
+            if (res.next()) {
+                int idCliente = res.getInt("id_cliente");
+                int totalEmprestimos = res.getInt("total_emprestimos");
+
+                clienteComMaisEmprestimos = carregaCliente(idCliente);
+                maxEmprestimos = totalEmprestimos;
+            }
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                this.getConexao().close();
+            } catch (Exception e) {
+            }
+        }
+
+        if (clienteComMaisEmprestimos != null) {
+            clienteComMaisEmprestimos.setTotalEmprestimos(maxEmprestimos);
+        }
+
+        return clienteComMaisEmprestimos;
+    }
+
+    private Connection getConexao() {
+        return Conexao.getConexao();
+    }
+}

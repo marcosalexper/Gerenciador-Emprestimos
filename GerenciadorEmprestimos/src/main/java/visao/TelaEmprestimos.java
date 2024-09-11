@@ -1,14 +1,66 @@
 
 package visao;
 
+import dao.EmprestimoDAO;
+import dao.ClienteDAO;
+import dao.FerramentaDAO;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.Emprestimo;
+
+
 
 public class TelaEmprestimos extends javax.swing.JFrame {
     
      private int xMouse, yMouse; //variaveis para permitir o manuseio da janela
+     
+     private final ClienteDAO objetocliente;
+    private final FerramentaDAO objetoferramenta;
+    private final EmprestimoDAO objetoemprestimo;
 
     
     public TelaEmprestimos() {
         initComponents();
+        this.objetocliente = new ClienteDAO();
+        this.objetoferramenta = new FerramentaDAO();
+        this.objetoemprestimo = new EmprestimoDAO();
+
+        carregaTabela();
+    }
+    
+    public final void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableEmprestimos.getModel();
+        modelo.setNumRows(0);
+
+        ArrayList<Emprestimo> minhalista = objetoemprestimo.getMinhaLista();
+
+        for (Emprestimo e : minhalista) {
+            String dataDevolucao = (e.getDataDevolucao() != null) ? e.getDataDevolucao().toString() : "Pendente";
+
+            modelo.addRow(new Object[]{
+                e.getId(),
+                e.getIdCliente(),
+                e.getIdFerramenta(),
+                e.getDataEmprestimo(),
+                dataDevolucao 
+            });
+        }
+        exibirClienteComMaisEmprestimos();
+    }
+
+    private void exibirClienteComMaisEmprestimos() {
+        Cliente clienteComMaisEmprestimos = objetocliente.getClienteComMaisEmprestimos();
+
+        if (clienteComMaisEmprestimos != null) {
+            JTFqtdemprestimos.setText(clienteComMaisEmprestimos.getNome() + ", " + clienteComMaisEmprestimos.getTotalEmprestimos());
+        } else {
+            JTFqtdemprestimos.setText("Nenhum cliente encontrado");
+        }
     }
 
     
@@ -20,7 +72,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JBSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableEmprestimos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -33,7 +85,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         JBAlterar = new javax.swing.JButton();
         JBGerar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        JTFqtdemprestimos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -87,9 +139,9 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmprestimos.setBackground(new java.awt.Color(255, 255, 255));
+        jTableEmprestimos.setForeground(new java.awt.Color(0, 0, 0));
+        jTableEmprestimos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,7 +152,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                 "ID AMIGO", "ID FERRAMENTA", "DATA EMPRÉSTIMO", "DATA DEVOLUÇÃO"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableEmprestimos);
 
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("ID CLIENTE:");
@@ -141,8 +193,8 @@ public class TelaEmprestimos extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 51, 102));
         jLabel6.setText("CLIENTE COM MAIS EMPRÉSTIMOS:");
 
-        jLabel7.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel7.setText("0");
+        JTFqtdemprestimos.setForeground(new java.awt.Color(0, 51, 102));
+        JTFqtdemprestimos.setText("CLIENTE, 0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +219,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel7)
+                                            .addComponent(JTFqtdemprestimos)
                                             .addComponent(jLabel5))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +260,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(JTFqtdemprestimos))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBApagar)
@@ -222,7 +274,7 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBSairActionPerformed
-         System.exit(0);
+         this.dispose();
     }//GEN-LAST:event_JBSairActionPerformed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -276,15 +328,15 @@ public class TelaEmprestimos extends javax.swing.JFrame {
     private javax.swing.JButton JBGerar;
     private javax.swing.JButton JBSair;
     private javax.swing.JPanel JPMenu;
+    private javax.swing.JLabel JTFqtdemprestimos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableEmprestimos;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
