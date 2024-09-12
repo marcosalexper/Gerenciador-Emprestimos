@@ -10,10 +10,10 @@
 > RF001 – O sistema deve permitir o cadastro de ferramentas, com nome, marca e o custo de aquisição. </br>
 > RF002 – O sistema deve permitir o cadastro de clientes, com nome e telefone.</br>
 > RF003 - O sistema deve permitir a edição dos cadastros, podendo alterar e apagar ferramentas e clientes.</br>
-> RF004 – O sistema deve permitir o cadastro de emprestimos, selecionando o cliente e a ferramenta.</br>
+> RF004 – O sistema deve permitir o cadastro de empréstimos, selecionando o cliente e a ferramenta.</br>
 > RF005 – O sistema deve mostrar o valor total gasto com ferramentas.</br>
-> RF006 – O sistema deve mostrar empréstimos ativos e empréstimos já realizados.</br>
-> RF007 – O sistema deve contabilizar a quantidade de empréstimos realizados por cada um dos clientes cadastrados.</br>
+> RF006 – O sistema deve mostrar empréstimos pendentes e empréstimos finalizados.</br>
+> RF007 – O sistema deve mostrar o cliente com mais empréstimos realizados.
 
 ### Requisitos Não-Funcionais:
 > RNF001 - Linguagem de Desenvolvimento: O sistema deve ser desenvolvido na linguagem de programação Java.</br>
@@ -21,7 +21,4 @@
 > RNF003 – Localização: O sistema deve rodar localmente no aparelho do usuário.</br>
 
 ### Regras de Negócio
-> RN001 – Empréstimos devem ser feitos apenas para clientes cadastrados.</br>
-> RN002 - Os dados de clientes e ferramentas não podem ser deixados em branco.</br>
-> RN003 - A quantidade em estoque de uma ferramenta deve ser um valor positivo.
-
+> RN001 – Empréstimos devem ser feitos apenas para clientes cadastrados.
